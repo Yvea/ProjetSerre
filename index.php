@@ -16,7 +16,6 @@
 
     <body>
         <div class="FormCo">
-            ouio
             <form method="POST" action="action.php">
                 <input type="text" name="login" placeholder="IDENTIFIANT"/>
                 <input type="password" name="mdp" placeholder="MOT DE PASSE"/>
