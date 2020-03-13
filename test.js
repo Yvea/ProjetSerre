@@ -1,6 +1,7 @@
 var http = require('http');
 var fs = require('fs');
 const Capteur = require("./Capteur");
+const Serre = require("./GestionSerre");
 
 function recupTemp() {
     let valeurt = capteurT.GetValue();
@@ -9,8 +10,7 @@ function recupTemp() {
     io.sockets.emit('valTemp', valeurt);
 }
 
-var capteurT = new Capteur('tempInt');
-var capteurH = new Capteur('humidAir');
+var Serre = new Serre();
 
 var serveur = http.createServer(function(req,res) {
 	fs.readFile('../Node/index.html', 'utf-8', function(error, content) {

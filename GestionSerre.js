@@ -6,6 +6,7 @@ module.exports = class GestionSerre {
     constructor()
     {
         this.captTempInt = new Capteur('tempInt');
+        this.captHumpidAir = new Capteur('humidAir');
 
         this.chauffage = new Actionneur();
     }
