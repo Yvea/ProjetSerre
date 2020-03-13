@@ -1,7 +1,7 @@
 class Bdd{
     
 }
-
+module.export = class Bdd{}
 //variable
 var express = require ('express');
 var mysql = require('mysql');
@@ -26,13 +26,14 @@ connection.connect(function(err) {
 
 app.get('/', function(req, resp){
     //requete SQL
-    connection.query("SELECT nom FROM test_projet", function(err,result){
+    connection.query("SELECT * FROM test_projet", function(err,result){
         //si la requete est incorrecte , on affiche un message l'erreur
         if (err) throw err;
             //affichage du resultat de la requete dans la console et sur le
             var json = JSON.stringify(result);
-            console.log(result);
+            console.log(json);
             resp.send(JSON.stringify(result));
     });
 })
 app.listen(1337);
+
