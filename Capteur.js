@@ -1,6 +1,6 @@
 const fetch = require("../node_modules/node-fetch");
 
-class Capteur {
+module.exports = class Capteur {
     
     
     //json.Monitor.S.S1.item1.value
@@ -14,75 +14,80 @@ class Capteur {
 
     constructor(IdCapteur)//constructeur general
     {
-        if(IdCapteur == 'humidSol')
+        this.ID = IdCapteur;
+
+        if(this.ID == 'humidSol')
         {
             this.humid = this.MoyenneHumidSol(callback);
         }
-        this.GetValue(IdCapteur)
+
+        this.GetValue();
     }
 
-    GetValue(IdCapteur)
+    GetValue()
     {
-        if (IdCapteur == 'tempInt')
+        var that = this;
+
+        var data = function(json) {
+            that.valeur = json.Monitor.S.S1.item1.value;
+        }
+
+        if (this.ID == 'tempInt')
         {
             fetch('http://192.168.64.200/status.json?a=admin:admin', {
                 method: 'GET'
             })
             .then(reponse => reponse.json())
-            .then(json => this.afficheValue(json));
+            .then(json => data(json));
         }
 
-        if (IdCapteur == 'tempExt')
+        if (this.ID == 'tempExt')
         {
             fetch('http://192.168.64.200/status.json?a=admin:admin', {
             method: 'GET'
             })
             .then(reponse => reponse.json())
-            .then(json => callback(IdCapteur, json.Monitor.S.S1.item1.value));
+            .then(json => callback(this.ID, json.Monitor.S.S1.item1.value));
         }
 
-        if (IdCapteur == 'humidAir')
+        if (this.ID == 'humidAir')
         {
             fetch('http://192.168.64.200/status.json?a=admin:admin', {
                 method: 'GET'
             })
             .then(reponse => reponse.json())
-            .then(json => callback(IdCapteur, json.Monitor.S.S1.item2.value));
+            .then(json => callback(this.ID, json.Monitor.S.S1.item2.value));
         }
 
-        if (IdCapteur == 'humidSol1')
+        if (this.ID == 'humidSol1')
         {
             fetch('http://192.168.64.200/status.json?a=admin:admin', {
                 method: 'GET'
             })
             .then(reponse => reponse.json())
-            .then(json => callback(IdCapteur, json.Monitor.S.S1.item1.value));
+            .then(json => callback(this.ID, json.Monitor.S.S1.item1.value));
         }
 
-        if (IdCapteur == 'humidSol2')
+        if (this.ID == 'humidSol2')
         {
             fetch('http://192.168.64.200/status.json?a=admin:admin', {
                 method: 'GET'
             })
             .then(reponse => reponse.json())
-            .then(json => callback(IdCapteur, json.Monitor.S.S1.item1.value));
+            .then(json => callback(this.ID, json.Monitor.S.S1.item1.value));
         }
 
-        if (IdCapteur == 'humidSol3')
+        if (this.ID == 'humidSol3')
         {
             fetch('http://192.168.64.200/status.json?a=admin:admin', {
                 method: 'GET'
             })
             .then(reponse => reponse.json())
-            .then(json => callback(IdCapteur, json.Monitor.S.S1.item1.value));
+            .then(json => callback(this.ID, json.Monitor.S.S1.item1.value));
         }
 
-    }
-    
-    afficheValue(data){
-        //data = this.GetValue(Jsonpath)
-        //io.sockets.emit(IdReq, data);
-        this.oui = data.Monitor.S.S1.item1.value
+        return this.valeur;
+
     }
 
     MoyenneHumidSol(callback)
@@ -91,9 +96,7 @@ class Capteur {
         let CapteurH2 = this.GetValue('humidSol2',callback);
         let CapteurH3 = this.GetValue('humidSol3',callback);
         var valueTot = 1 + 2 + 3;
-        var valueMoy = valueTot / 3
-        return valueMoy
+        var valueMoy = valueTot / 3;
+        return valueMoy;
     }
 }
-
-module.exports = Capteur

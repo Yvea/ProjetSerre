@@ -1,11 +1,10 @@
 var http = require('http');
 var fs = require('fs');
-//const fetch = require("../node_modules/node-fetch");
-const Capteur = require("./Capteur")
+const Capteur = require("./Capteur");
 
 function recupTemp() {
-    capteurT.GetValue('tempInt')
-    io.sockets.emit('valTemp', capteurT.oui);
+    let valeur = capteurT.GetValue();
+    io.sockets.emit('valTemp', valeur);
 }
 
 var capteurT = new Capteur('tempInt');
