@@ -3,11 +3,14 @@ var fs = require('fs');
 const Capteur = require("./Capteur");
 
 function recupTemp() {
-    let valeur = capteurT.GetValue();
-    io.sockets.emit('valTemp', valeur);
+    let valeurt = capteurT.GetValue();
+    let valeurh = capteurH.GetValue();
+    io.sockets.emit('ValHumidAir', valeurh);
+    io.sockets.emit('valTemp', valeurt);
 }
 
 var capteurT = new Capteur('tempInt');
+var capteurH = new Capteur('humidAir');
 
 var serveur = http.createServer(function(req,res) {
 	fs.readFile('../Node/index.html', 'utf-8', function(error, content) {

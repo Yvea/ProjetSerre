@@ -7,15 +7,20 @@ module.exports = class GestionSerre {
     {
         this.captTempInt = new Capteur('tempInt');
 
-        this.act
+        this.chauffage = new Actionneur();
     }
 
     TestValeurs()
     {
-        var tempInt = this.capteurTempInt.GetValue('tempInt')
+        var tempInt = this.capteurTempInt.GetValue('tempInt');
+
         if(tempInt > 25)
         {
-
+            this.chauffage.commanderChauffage(false);
+        }
+        else
+        {
+            
         }
     }
     

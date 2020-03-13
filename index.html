@@ -8,7 +8,8 @@
     <body>
         <h1>Communication avec la carte TCW241</h1>
 
-        <div><h2>Température actuelle :</h2></div>
+        <div><h2 id="CHO">Température actuelle :</h2></div>
+        <div><h2 id="humid">Humidité dans l'air :</h2></div>
 
         <div><input type="button" value="ouvrirfenetre" id ="requetefenetre"/></div>
 
@@ -18,7 +19,10 @@
             var socket = io.connect('http://192.168.65.157:8080');
 
             socket.on('valTemp', function(data) {
-                $('h2').replaceWith('<h2>Température actuelle : ' + data + '</h2>');
+                $('#CHO').replaceWith('<h2 id="CHO">Température actuelle : ' + data + '</h2>');
+            })
+            socket.on('ValHumidAir', function(data){
+                $('#humid').replaceWith('<h2 id="humid"> Humidité dans l\'air :' + data + '</h2>');
             })
             socket.on('valfenetre', function() {
                 alert('relais 1 ouvert');
