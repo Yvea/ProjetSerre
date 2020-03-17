@@ -5,8 +5,6 @@ module.exports = class Actionneur {
     constructor(IDActionneur)
     {
         this.ID = IDActionneur;
-        this.nbrelay;
-
     }
 
     data(actioneur) 
@@ -22,15 +20,15 @@ module.exports = class Actionneur {
                     that.nbrelay = '2';
                     break;
                 case 'Arrosage':
-                    that.nbrelay = '3';
+                    that.nbrelay = '4';
                     break;
                 case 'Brumisation':
-                    that.nbrelay = '4';
+                    that.nbrelay = '8';
                     break;
             }
         }
 
-    commanderChauffage(etat)
+    Commander(etat)
     {
         this.data(this.ID)
         
