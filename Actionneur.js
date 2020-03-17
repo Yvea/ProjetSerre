@@ -34,13 +34,13 @@ module.exports = class Actionneur {
         
         if(etat == true)
         {
-            fetch('http://192.168.64.200/status.json?a=admin:admin&ron=' + this.nbrelay + '', {
+            fetch('http://192.168.0.200/status.json?a=admin:admin&ron=' + this.nbrelay + '', {
                 method: 'POST'
 	        })
         }
         else
         {
-            fetch('http://192.168.64.200/status.json?a=admin:admin&rof=' + this.nbrelay + '', {
+            fetch('http://192.168.0.200/status.json?a=admin:admin&rof=' + this.nbrelay + '', {
                 method: 'POST'
             })
         }
