@@ -5,27 +5,47 @@ module.exports = class Actionneur {
     constructor(IDActionneur)
     {
         this.ID = IDActionneur;
+        this.nbrelay;
 
     }
 
+    data(actioneur) 
+        {
+            var that = this;
+
+            switch (actioneur)
+            {
+                case 'Chauffage':
+                    that.nbrelay = '1';
+                    break;
+                case 'Vasistas':
+                    that.nbrelay = '2';
+                    break;
+                case 'Arrosage':
+                    that.nbrelay = '3';
+                    break;
+                case 'Brumisation':
+                    that.nbrelay = '4';
+                    break;
+            }
+        }
+
     commanderChauffage(etat)
     {
+        this.data(this.ID)
+        
         if(etat == true)
         {
-            fetch('http://192.168.64.200/status.json?a=admin:admin&ron=1', {
+            fetch('http://192.168.64.200/status.json?a=admin:admin&ron=' + this.nbrelay + '', {
                 method: 'POST'
 	        })
         }
         else
         {
-            fetch('http://192.168.64.200/status.json?a=admin:admin&rof=1', {
+            fetch('http://192.168.64.200/status.json?a=admin:admin&rof=' + this.nbrelay + '', {
                 method: 'POST'
             })
         }
-    }
-
-    GetEtat(this.ID){
-        
     }
 		    
 }
