@@ -10,7 +10,9 @@ function recupTemp() {
     io.sockets.emit('valTemp', valeurt);
 }
 
-var Serre = new Serre();
+var capteurT = new Capteur('tempInt');
+var capteurH = new Capteur('humidSol');
+//var Serre = new Serre();
 
 var serveur = http.createServer(function(req,res) {
 	fs.readFile('../Node/index.html', 'utf-8', function(error, content) {

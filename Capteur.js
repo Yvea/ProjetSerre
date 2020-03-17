@@ -34,7 +34,7 @@ module.exports = class Capteur {
             }
         }
         
-        fetch('http://192.168.0.200/status.json?a=admin:admin', {
+        fetch('http://91.169.11.60:16502/status.json?a=admin:admin', {
             method: 'GET'
         })
         .then(reponse => reponse.json())
