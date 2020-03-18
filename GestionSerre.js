@@ -17,7 +17,7 @@ module.exports = class GestionSerre {
 
         if(tempInt > 25)
         {
-            this.chauffage.commanderChauffage(false);
+            this.chauffage.Commander(false);
         }
         else
         {

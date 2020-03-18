@@ -22,7 +22,7 @@
                 $('#CHO').replaceWith('<h2 id="CHO">Température actuelle : ' + data + '</h2>');
             })
             socket.on('ValHumidAir', function(data){
-                $('#humid').replaceWith('<h2 id="humid"> Humidité dans l\'air :' + data + '</h2>');
+                $('#humid').replaceWith('<h2 id="humid"> Humidité dans l\'air : ' + data + '</h2>');
             })
             socket.on('valfenetre', function() {
                 alert('relais 1 ouvert');

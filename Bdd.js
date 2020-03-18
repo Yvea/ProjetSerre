@@ -1,39 +1,35 @@
-class Bdd{
-    
-}
-module.export = class Bdd{}
-//variable
-var express = require ('express');
 var mysql = require('mysql');
-var http = require('http');
-var url = require('url');
-var fs = require('fs');
+var express = require ('express');
 var app = express();
 
-var connection = mysql.createConnection({
-    //propriété de connexion
-    host : 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'projetserre'
-});
+module.export = class Bdd {
 
-connection.connect(function(err) {
-        //test de connexion , la console affiche l'erreur si la connexion est un échec sinon la console affiche 'Connected'
-        if (err) throw err;
-        console.log('Connected!');
-});
+    constructor()
+    {
+        this.connection = mysql.createConnection({
+            //propriété de connexion
+            host : 'localhost',
+            user: 'root',
+            password: 'root',
+            database: 'projetserre'
+        });
 
-app.get('/', function(req, resp){
-    //requete SQL
-    connection.query("SELECT * FROM test_projet", function(err,result){
-        //si la requete est incorrecte , on affiche un message l'erreur
-        if (err) throw err;
-            //affichage du resultat de la requete dans la console et sur le
-            var json = JSON.stringify(result);
-            console.log(json);
-            resp.send(JSON.stringify(result));
-    });
-})
-app.listen(1337);
+        this.connection.connect(function(err) {
+            //test de connexion , la console affiche l'erreur si la connexion est un échec sinon la console affiche 'Connected'
+            if (err) throw err;
+            console.log('Connected!');
+        });
+    }
 
+    DBInsert(valTempInt, valHumidAir, valHumidSol)
+    {
+        connection.query("INSERT INTO `Datalog`(`Eventtype`, `Temp`, `HumiditeAir`, `HumiditeTerre`) VALUES ('SensorData', " + valTempInt + ", " + valHumidAir + ", " + valHumidSol + ")", function(err,result){
+            //si la requete est incorrecte , on affiche un message l'erreur
+            if (err) throw err;
+                //affichage du resultat de la requete dans la console et sur le
+                /*var json = JSON.stringify(result);
+                console.log(json);
+                resp.send(JSON.stringify(result));*/
+        });
+    }
+}

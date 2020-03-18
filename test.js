@@ -15,7 +15,7 @@ var capteurH = new Capteur('humidSol');
 //var Serre = new Serre();
 
 var serveur = http.createServer(function(req,res) {
-	fs.readFile('../Node/index.html', 'utf-8', function(error, content) {
+	fs.readFile('../ProjetSerre/index.html', 'utf-8', function(error, content) {
         res.writeHead(200, {"Content-Type": "text/html"});
         res.end(content);
     });
