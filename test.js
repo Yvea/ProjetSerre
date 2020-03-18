@@ -1,18 +1,14 @@
 var http = require('http');
 var fs = require('fs');
-const Capteur = require("./Capteur");
-const Serre = require("./GestionSerre");
+const GestionSerre = require("./GestionSerre");
 
 function recupTemp() {
-    let valeurt = capteurT.GetValue();
-    let valeurh = capteurH.GetValue();
-    io.sockets.emit('ValHumidAir', valeurh);
-    io.sockets.emit('valTemp', valeurt);
+    Serre.TestValeurs();
+    //io.sockets.emit('ValHumidAir', valeurh);
+    //io.sockets.emit('valTemp', valeurt);
 }
 
-var capteurT = new Capteur('tempInt');
-var capteurH = new Capteur('humidSol');
-//var Serre = new Serre();
+var Serre = new GestionSerre();
 
 var serveur = http.createServer(function(req,res) {
 	fs.readFile('../ProjetSerre/index.html', 'utf-8', function(error, content) {
@@ -24,7 +20,7 @@ var serveur = http.createServer(function(req,res) {
 var io = require('socket.io').listen(serveur);
 
 io.sockets.on('connection', function (socket) {
-    setInterval(recupTemp, 3000);
+    setInterval(recupTemp, 5000);
 });
 
 serveur.listen(8080);

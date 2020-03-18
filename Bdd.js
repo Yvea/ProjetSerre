@@ -1,8 +1,6 @@
-var mysql = require('mysql');
-var express = require ('express');
-var app = express();
+var mysql = require('../node_modules/mysql');
 
-module.export = class Bdd {
+module.exports = class Bdd {
 
     constructor()
     {
@@ -17,13 +15,13 @@ module.export = class Bdd {
         this.connection.connect(function(err) {
             //test de connexion , la console affiche l'erreur si la connexion est un échec sinon la console affiche 'Connected'
             if (err) throw err;
-            console.log('Connected!');
+            console.log('Connecté à la BDD !');
         });
     }
 
     DBInsert(valTempInt, valHumidAir, valHumidSol)
     {
-        connection.query("INSERT INTO `Datalog`(`Eventtype`, `Temp`, `HumiditeAir`, `HumiditeTerre`) VALUES ('SensorData', " + valTempInt + ", " + valHumidAir + ", " + valHumidSol + ")", function(err,result){
+        this.connection.query("INSERT INTO `Datalog`(`Eventtype`, `Temp`, `HumiditeAir`, `HumiditeTerre`) VALUES ('SensorData', " + valTempInt + ", " + valHumidAir + ", " + valHumidSol + ")", function(err,result){
             //si la requete est incorrecte , on affiche un message l'erreur
             if (err) throw err;
                 //affichage du resultat de la requete dans la console et sur le

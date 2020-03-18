@@ -1,5 +1,6 @@
 const Capteur = require("./Capteur");
 const Actionneur = require("./Actionneur");
+const Bdd = require("./Bdd");
 
 module.exports = class GestionSerre {
 
@@ -10,18 +11,22 @@ module.exports = class GestionSerre {
         this.captHumpidAir = new Capteur('humidAir');
         this.captHumpidSol = new Capteur('humidSol');
 
-        this.Vasistas = new Actionneur(Vasistas);
-        this.Chauffage = new Actionneur(Chauffage);
-        this.Arrosage = new Actionneur(Arrosage);
-        this.Brumisation = new Actionneur(Brumisation);
+        this.Vasistas = new Actionneur('Vasistas');
+        this.Chauffage = new Actionneur('Chauffage');
+        this.Arrosage = new Actionneur('Arrosage');
+        this.Brumisation = new Actionneur('Brumisation');
+
+        this.BDD = new Bdd();
     }
 
     TestValeurs()
     {
-        var tempInt = this.capteurTempInt.GetValue();
-        var tempExt = this.capteurTempExt.GetValue();
+        var tempInt = this.captTempInt.GetValue();
+        var tempExt = this.captTempExt.GetValue();
         var humidAir = this.captHumpidAir.GetValue();
         var humidSol = this.captHumpidSol.GetValue();
+
+        this.BDD.DBInsert(tempInt, humidAir, humidSol);
 
         if(tempInt >= 25) //Ouverture vasistas
         {
