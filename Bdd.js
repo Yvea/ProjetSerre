@@ -19,9 +19,9 @@ module.exports = class Bdd {
         });
     }
 
-    DBInsert(valTempInt, valHumidAir, valHumidSol)
+    DBInsert(valTempInt, valTempExt, valHumidAir, valHumidSol)
     {
-        this.connection.query("INSERT INTO `Datalog`(`Eventtype`, `Temp`, `HumiditeAir`, `HumiditeTerre`) VALUES ('SensorData', " + valTempInt + ", " + valHumidAir + ", " + valHumidSol + ")", function(err,result){
+        this.connection.query("INSERT INTO `Datalog`(`Eventtype`, `TempInt`, `TempExt`, `HumiditeAir`, `HumiditeTerre`) VALUES ('SensorData', " + valTempInt + ", " + valTempExt + ", " + valHumidAir + ", " + valHumidSol + ")", function(err,result){
             //si la requete est incorrecte , on affiche un message l'erreur
             if (err) throw err;
                 //affichage du resultat de la requete dans la console et sur le

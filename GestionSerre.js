@@ -26,7 +26,7 @@ module.exports = class GestionSerre {
         var humidAir = this.captHumpidAir.GetValue();
         var humidSol = this.captHumpidSol.GetValue();
 
-        this.BDD.DBInsert(tempInt, humidAir, humidSol);
+        this.BDD.DBInsert(tempInt, tempExt, humidAir, humidSol);
 
         if(tempInt >= 25) //Ouverture vasistas
         {
