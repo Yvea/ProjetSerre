@@ -7,11 +7,11 @@ module.exports = class Actionneur {
         this.ID = IDActionneur;
     }
 
-    data(actioneur) 
+    data() 
         {
             var that = this;
 
-            switch (actioneur)
+            switch (that.ID)
             {
                 case 'Chauffage':
                     that.nbrelay = '1';
