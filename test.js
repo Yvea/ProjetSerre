@@ -4,14 +4,15 @@ const GestionSerre = require("./GestionSerre");
 
 function recupTemp() {
     Serre.TestValeurs();
-    //io.sockets.emit('ValHumidAir', valeurh);
-    //io.sockets.emit('valTemp', valeurt);
+    console.log(Serre.captDate.GetValue());
+    io.sockets.emit('ValHumidAir', Serre.captDate.GetValue());
+    io.sockets.emit('valTemp', Serre.captTempInt.GetValue());
 }
 
 var Serre = new GestionSerre();
 
 var serveur = http.createServer(function(req,res) {
-	fs.readFile('../ProjetSerre/index.html', 'utf-8', function(error, content) {
+	fs.readFile('../Node/index.html', 'utf-8', function(error, content) {
         res.writeHead(200, {"Content-Type": "text/html"});
         res.end(content);
     });

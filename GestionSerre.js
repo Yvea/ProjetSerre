@@ -10,6 +10,7 @@ module.exports = class GestionSerre {
         this.captTempExt = new Capteur('tempExt');
         this.captHumpidAir = new Capteur('humidAir');
         this.captHumpidSol = new Capteur('humidSol');
+        this.captDate = new Capteur('date');
 
         this.Vasistas = new Actionneur('Vasistas');
         this.Chauffage = new Actionneur('Chauffage');
@@ -28,6 +29,9 @@ module.exports = class GestionSerre {
 
         this.BDD.DBInsert(tempInt, tempExt, humidAir, humidSol);
 
+        var humidCrit = 10;
+        var humidNeed = 50;
+
         if(tempInt >= 25) //Ouverture vasistas
         {
             this.Vasistas.Commander(true);
@@ -39,9 +43,12 @@ module.exports = class GestionSerre {
             else
                 this.Vasistas.Commander(false);
         }
-        else if(humidAir >= 85 && tempInt > 10)
+        else if(humidAir >= 85)
         {
+            if(tempInt > 10)
                 this.Vasistas.Commander(true);
+            else
+                this.Vasistas.Commander(false);
         }
         else
         {
@@ -55,10 +62,6 @@ module.exports = class GestionSerre {
         else if(tempInt >= 25)
         {
             this.Chauffage.Commander(false);
-        }
-        else
-        {
-            this.Chauffage.Commander(true);
         }
 
         if(tempInt >= 25) //Brumisation
@@ -81,6 +84,20 @@ module.exports = class GestionSerre {
             this.Brumisation.Commander(false);
         }
         
+        if (humidSol < humidCrit) //Arrosage
+        {
+            this.Arrosage.Commander(true);
+        }
+        else if(humidSol > humidNeed)
+        {
+            this.Arrosage.Commander(false);
+        }
+        else
+        {
+            this.Arrosage.Commander(true);
+        }
     }
+
+    //SetPlageHoraire()
     
 }

@@ -31,6 +31,9 @@ module.exports = class Capteur {
                     let valeurM = valeur1 + valeur2 + valeur3;
                     that.valeur = valeurM / 3;
                     break;
+                case 'date':
+                    that.valeur = json.Monitor.Time.Time;
+                    break;
             }
         }
         
