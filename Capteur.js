@@ -1,13 +1,14 @@
 const fetch = require("../node_modules/node-fetch");
 
+//classe qui crée le capteur
 module.exports = class Capteur {
     constructor(IdCapteur)
     {
         this.ID = IdCapteur;
         this.GetValue();
     }
-
-    GetValue()
+    //TODO commenter getvalue + principe
+    GetValue() 
     {
         var that = this;
 
@@ -36,7 +37,7 @@ module.exports = class Capteur {
                     break;
             }
         }
-        
+        //TODO sortir IP dans fichier de config
         fetch('http://91.169.11.60:16502/status.json?a=admin:admin', {
             method: 'GET'
         })

@@ -10,6 +10,7 @@
 
         <div><h2 id="CHO">Température actuelle :</h2></div>
         <div><h2 id="humid">Humidité dans l'air :</h2></div>
+        <div><h2 id="date">date actuelle :</h2></div>
 
         <div><input type="button" value="ouvrirfenetre" id ="requetefenetre"/></div>
 
@@ -21,9 +22,14 @@
             socket.on('valTemp', function(data) {
                 $('#CHO').replaceWith('<h2 id="CHO">Température actuelle : ' + data + '</h2>');
             })
+            socket.on('valdate', function(data) {
+                $('#date').replaceWith('<h2 id="date">date actuelle : ' + data + '</h2>');
+            })
             socket.on('ValHumidAir', function(data){
                 $('#humid').replaceWith('<h2 id="humid"> Humidité dans l\'air : ' + data + '</h2>');
             })
+            
+            
             socket.on('valfenetre', function() {
                 alert('relais 1 ouvert');
             })

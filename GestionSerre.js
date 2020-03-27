@@ -32,7 +32,8 @@ module.exports = class GestionSerre {
         var humidCrit = 10;
         var humidNeed = 50;
 
-        if(tempInt >= 25) //Ouverture vasistas
+        //gestion de l'Ouverture vasistas referé au logigram
+        if(tempInt >= 25)  
         {
             this.Vasistas.Commander(true);
         }
@@ -55,7 +56,8 @@ module.exports = class GestionSerre {
             this.Vasistas.Commander(false);
         }
 
-        if(tempInt <= 1) //Chauffage
+        //gestion du Chauffage
+        if(tempInt <= 1) 
         {
             this.Chauffage.Commander(true);
         }
@@ -64,7 +66,11 @@ module.exports = class GestionSerre {
             this.Chauffage.Commander(false);
         }
 
-        if(tempInt >= 25) //Brumisation
+
+
+
+        //gestion de la Brumisation
+        if(tempInt >= 25) 
         {
             this.Brumisation.Commander(true);
         }
@@ -83,8 +89,9 @@ module.exports = class GestionSerre {
         {
             this.Brumisation.Commander(false);
         }
-        
-        if (humidSol < humidCrit) //Arrosage
+
+        //gestion de l'Arrosage
+        if (humidSol < humidCrit) 
         {
             this.Arrosage.Commander(true);
         }
@@ -98,6 +105,20 @@ module.exports = class GestionSerre {
         }
     }
 
-    //SetPlageHoraire()
-    
+    SetPlageHoraire()
+    {
+
+        timestamp
+        var time = this.captDate.GetValue();
+        //console.log(time);
+        const timeactu = new Date('' +''+time);
+
+        var heure = timeactu.getHours()
+        console.log(heure);
+        var minute = timeactu.getMinutes()
+        console.log(minute);
+
+        var levraistemps = heure + ':' + minute
+        return levraistemps;
+    }
 }
