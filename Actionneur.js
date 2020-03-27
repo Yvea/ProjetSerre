@@ -32,18 +32,10 @@ module.exports = class Actionneur {
     {
         this.data(this.ID)
         
-        if(etat == true)
-        {
-            fetch('http://91.169.11.60:16502/status.json?a=admin:admin&ron=' + this.nbrelay + '', {
-                method: 'POST'
-	        })
-        }
-        else
-        {
-            fetch('http://91.169.11.60:16502/status.json?a=admin:admin&rof=' + this.nbrelay + '', {
-                method: 'POST'
-            })
-        }
+        fetch('http://91.169.11.60:16502/status.json?a=admin:admin&r' + etat + '=' + this.nbrelay + '', {
+            method: 'POST'
+        })
+
     }
 		    
 }

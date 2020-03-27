@@ -35,35 +35,35 @@ module.exports = class GestionSerre {
         //gestion de l'Ouverture vasistas referé au logigram
         if(tempInt >= 25)  
         {
-            this.Vasistas.Commander(true);
+            this.Vasistas.Commander('on');
         }
         else if(tempExt > tempInt)
         {  
             if(tempInt <= 10)
-                this.Vasistas.Commander(true);
+                this.Vasistas.Commander('on');
             else
-                this.Vasistas.Commander(false);
+                this.Vasistas.Commander('of');
         }
         else if(humidAir >= 85)
         {
             if(tempInt > 10)
-                this.Vasistas.Commander(true);
+                this.Vasistas.Commander('on');
             else
-                this.Vasistas.Commander(false);
+                this.Vasistas.Commander('of');
         }
         else
         {
-            this.Vasistas.Commander(false);
+            this.Vasistas.Commander('of');
         }
 
         //gestion du Chauffage
         if(tempInt <= 1) 
         {
-            this.Chauffage.Commander(true);
+            this.Chauffage.Commander('on');
         }
         else if(tempInt >= 25)
         {
-            this.Chauffage.Commander(false);
+            this.Chauffage.Commander('of');
         }
 
 
@@ -72,36 +72,36 @@ module.exports = class GestionSerre {
         //gestion de la Brumisation
         if(tempInt >= 25) 
         {
-            this.Brumisation.Commander(true);
+            this.Brumisation.Commander('on');
         }
         else if(humidAir <= 50)
         {
             if(tempInt > 5)
             {
-                this.Brumisation.Commander(true);
+                this.Brumisation.Commander('on');
             }
             else
             {
-                this.Brumisation.Commander(false);
+                this.Brumisation.Commander('of');
             }
         }
         else
         {
-            this.Brumisation.Commander(false);
+            this.Brumisation.Commander('of');
         }
 
         //gestion de l'Arrosage
         if (humidSol < humidCrit) 
         {
-            this.Arrosage.Commander(true);
+            this.Arrosage.Commander('on');
         }
         else if(humidSol > humidNeed)
         {
-            this.Arrosage.Commander(false);
+            this.Arrosage.Commander('of');
         }
         else
         {
-            this.Arrosage.Commander(true);
+            this.Arrosage.Commander('on');
         }
     }
 
