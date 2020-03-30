@@ -27,7 +27,7 @@ var serveur = http.createServer(function(req,res) {
 var io = require('socket.io').listen(serveur);
 
 io.sockets.on('connection', function (socket) {
-    setInterval(recupTemp, 60000);
+    setInterval(recupTemp, 5000);
 });
 
 serveur.listen(8080);
