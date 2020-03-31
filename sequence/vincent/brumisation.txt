@@ -1,0 +1,21 @@
+title Réguler brumisation
+
+
+GestionSerre->Capteur: new Capteur('tempInt')
+Capteur->GestionSerre: var tempInt
+GestionSerre->Capteur: new Capteur('humidAir')
+Capteur->GestionSerre: var humidAir
+GestionSerre->Actionneur: new Actionneur('brumisation')
+Actionneur->GestionSerre: var brumisation
+
+alt tempInt >= 25
+    GestionSerre->Actionneur: this.brumisation.Commander('on')
+else humidAir <= 50
+    alt tempInt > 5
+        GestionSerre->Actionneur: this.brumisation.Commander('on')
+    else
+        GestionSerre->Actionneur: this.brumisation.Commander('of')
+    end
+else 
+        GestionSerre->Actionneur: this.brumisation.Commander('of')
+end

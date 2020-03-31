@@ -1,0 +1,13 @@
+title Réguler chauffage
+
+
+GestionSerre->Capteur: new Capteur('tempInt')
+Capteur->GestionSerre: var tempInt
+GestionSerre->Actionneur: new Actionneur('chauffage')
+Actionneur->GestionSerre: var chauffage
+
+alt tempInt <= 1
+    GestionSerre->Actionneur: this.chauffage.Commander('on')
+else tempInt >= 25
+    GestionSerre->Actionneur: this.chauffage.Commander('of')
+end

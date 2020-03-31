@@ -1,0 +1,19 @@
+title Réguler Arrosage
+
+GestionSerre->Capteur: new Capteur('humidSol')
+Capteur->GestionSerre: var humidSol
+GestionSerre->Actionneur: new Actionneur('arrosage')
+Actionneur->GestionSerre: var arrosage
+
+note left of GestionSerre 
+Nous avons deux constante 
+humidCritique et humidNecessaire
+end note
+
+alt humidSol < humidCritique
+    GestionSerre->Actionneur: this.arrosage.Commander('on')
+else humidSol > humidNecessaire
+    GestionSerre->Actionneur: this.arrosage.Commander('of')
+else 
+    GestionSerre->Actionneur: this.arrosage.Commander('on')
+end

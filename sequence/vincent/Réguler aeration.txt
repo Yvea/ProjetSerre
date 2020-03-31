@@ -1,0 +1,29 @@
+title Réguler l'aeration
+
+
+GestionSerre->Capteur: new Capteur('tempInt')
+Capteur->GestionSerre: var tempInt
+GestionSerre->Capteur: new Capteur('tempExt')
+Capteur->GestionSerre: var tempExt
+GestionSerre->Capteur: new Capteur('humidAir')
+Capteur->GestionSerre: var humidAir
+GestionSerre->Actionneur: new Actionneur('Vasistas')
+Actionneur->GestionSerre: var vasistas
+
+alt tempInt >= 25
+    GestionSerre->Actionneur: this.vasistas.Commander('on')
+else tempExt > tempInt
+    alt tempInt <= 10
+        GestionSerre->Actionneur: this.vasistas.Commander('on')
+    else
+        GestionSerre->Actionneur: this.vasistas.Commander('of')
+    end
+else humidAir >= 85
+    alt tempInt > 10
+        GestionSerre->Actionneur: this.vasistas.Commander('on')
+    else
+        GestionSerre->Actionneur: this.vasistas.Commander('of')
+    end
+else
+    GestionSerre->Actionneur: this.vasistas.Commander('of')
+end
