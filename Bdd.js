@@ -26,4 +26,14 @@ module.exports = class Bdd {
                 //affichage du resultat de la requete dans la console et sur le
         });
     }
+    //fonction recherche plage horaire
+    DBQueryHoraire()
+    {
+        this.connection.query("select * from PlageHoraire ", function(err,result){
+            //si la requete est incorrecte , on affiche un message l'erreur
+            if (err) throw err;
+            //si pas d'erreur on retourne le resultat
+            return result ;
+        });
+    }
 }
