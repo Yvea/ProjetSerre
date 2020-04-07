@@ -107,9 +107,8 @@ module.exports = class GestionSerre {
 
     SetPlageHoraire()
     {
-        //timestamp
         var time = this.captDate.GetValue();
-        //console.log(time);
+        
         const timeactu = new Date(time);
 
         var heure = timeactu.getHours()
