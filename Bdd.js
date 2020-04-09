@@ -36,4 +36,22 @@ module.exports = class Bdd {
             return result ;
         });
     }
+    DBQueryregu()
+    {
+        this.connection.query("select * from Datalog ", function(err,result){
+            //si la requete est incorrecte , on affiche un message l'erreur
+            if (err) throw err;
+            //si pas d'erreur on retourne le resultat
+            return result ;
+        });
+    }
+    DBQueryUser()
+    {
+        this.connection.query("select Nom,Login,Email from User ", function(err,result){
+            //si la requete est incorrecte , on affiche un message l'erreur
+            if (err) throw err;
+            //si pas d'erreur on retourne le resultat
+            return result ;
+        });
+    }
 }
