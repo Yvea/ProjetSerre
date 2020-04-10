@@ -18,9 +18,9 @@ module.exports = class Bdd {
     }
     
     //TODO expliquer BDinsert
-    DBInsert(valTempInt, valTempExt, valHumidAir, valHumidSol)
+    DBInsert(Eventtype ,valTempInt, valHumidAir, valHumidSol,EventValue, ID_user)
     {
-        this.connection.query("INSERT INTO `Datalog`(`Eventtype`, `TempInt`, `TempExt`, `HumiditeAir`, `HumiditeTerre`) VALUES ('SensorData', " + valTempInt + ", " + valTempExt + ", " + valHumidAir + ", " + valHumidSol + ")", function(err,result){
+        this.connection.query("INSERT INTO `Datalog`(Eventtype`, `Temp`,`HumiditeAir`, `HumiditeTerre`,`EventValue`,`ID_user`) VALUES ("+ Eventtype +", " + valTempInt + ", " + valHumidAir + ", " + valHumidSol + ","+ EventValue +","+ ID_user +")", function(err,result){
             //si la requete est incorrecte , on affiche un message l'erreur
             if (err) throw err;
                 //affichage du resultat de la requete dans la console et sur le
@@ -36,6 +36,7 @@ module.exports = class Bdd {
             return result ;
         });
     }
+    //fonction rechercher et affichage de la table datalog
     DBQueryregu()
     {
         this.connection.query("select * from Datalog ", function(err,result){
@@ -45,6 +46,7 @@ module.exports = class Bdd {
             return result ;
         });
     }
+    //fonction recherche et affichage des users
     DBQueryUser()
     {
         this.connection.query("select Nom,Login,Email from User ", function(err,result){
